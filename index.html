@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Kirana Ledger</title>
+
+    <link
+        rel="stylesheet"
+        href="/style.css"
+    >
+
+</head>
+
+
+<body>
+
+    <!-- =====================================================
+         TOAST MESSAGE
+    ====================================================== -->
+
+    <div
+        id="toast"
+        class="toast"
+        role="status"
+        aria-live="polite">
+    </div>
+
+
+    <!-- =====================================================
+         AUTHENTICATION
+    ====================================================== -->
+
+    <main
+        id="authScreen"
+        class="auth-screen">
+
+        <section class="auth-card">
+
+
+            <!-- BRAND -->
+
+            <div class="brand">
+
+                <div class="brand-mark">
+                    K
+                </div>
+
+                <div>
+
+                    <h1>
+                        Kirana Ledger
+                    </h1>
+
+                    <p>
+                        Simple daily transaction records
+                        for local shops.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- AUTH TABS -->
+
+            <div class="auth-tabs">
+
+                <button
+                    id="showLoginBtn"
+                    class="tab-btn active"
+                    type="button">
+
+                    Sign In
+
+                </button>
+
+
+                <button
+                    id="showSignupBtn"
+                    class="tab-btn"
+                    type="button">
+
+                    Create Account
+
+                </button>
+
+            </div>
+
+
+            <!-- =================================================
+                 SIGN IN
+            ================================================== -->
+
+            <form
+                id="loginForm"
+                class="auth-form">
+
+                <h2>
+                    Welcome back
+                </h2>
+
+
+                <p class="muted">
+
+                    Sign in using your personal email.
+
+                </p>
+
+
+                <label for="loginEmail">
+
+                    Personal email
+
+                </label>
+
+
+                <input
+                    id="loginEmail"
+                    name="personal_email"
+                    type="email"
+                    placeholder="you@example.com"
+                    autocomplete="email"
+                    required
+                >
+
+
+                <label for="loginPassword">
+
+                    Password
+
+                </label>
+
+
+                <input
+                    id="loginPassword"
+                    name="password"
+                    type="password"
+                    placeholder="Minimum 8 characters"
+                    autocomplete="current-password"
+                    required
+                >
+
+
+                <p class="password-rule">
+
+                    Password: 8+ characters, 1 digit,
+                    and 1 special symbol
+                    (! @ # $ % ^ & *).
+
+                </p>
+
+
+                <button
+                    class="primary-btn full-width"
+                    type="submit">
+
+                    Sign In
+
+                </button>
+
+            </form>
+
+
+            <!-- =================================================
+                 SIGN UP
+            ================================================== -->
+
+            <form
+                id="signupForm"
+                class="auth-form hidden">
+
+                <h2>
+                    Create your shop account
+                </h2>
+
+
+                <p class="muted">
+
+                    Fields marked with * are compulsory.
+
+                </p>
+
+
+                <label for="fullName">
+
+                    Full name *
+
+                </label>
+
+
+                <input
+                    id="fullName"
+                    name="full_name"
+                    type="text"
+                    placeholder="Enter your full name"
+                    autocomplete="name"
+                    required
+                >
+
+
+                <label for="shopName">
+
+                    Shop name *
+
+                </label>
+
+
+                <input
+                    id="shopName"
+                    name="shop_name"
+                    type="text"
+                    placeholder="Enter your shop name"
+                    required
+                >
+
+
+                <label for="personalEmail">
+
+                    Personal email *
+
+                </label>
+
+
+                <input
+                    id="personalEmail"
+                    name="personal_email"
+                    type="email"
+                    placeholder="you@example.com"
+                    autocomplete="email"
+                    required
+                >
+
+
+                <label for="shopEmail">
+
+                    Shop email (optional)
+
+                </label>
+
+
+                <input
+                    id="shopEmail"
+                    name="shop_email"
+                    type="email"
+                    placeholder="shop@example.com"
+                    autocomplete="email"
+                >
+
+
+                <label for="signupPassword">
+
+                    Password *
+
+                </label>
+
+
+                <input
+                    id="signupPassword"
+                    name="password"
+                    type="password"
+                    placeholder="Create a strong password"
+                    autocomplete="new-password"
+                    required
+                >
+
+
+                <p class="password-rule">
+
+                    Must contain 8+ characters,
+                    1 digit, and 1 special symbol
+                    from ! @ # $ % ^ & *.
+
+                </p>
+
+
+                <button
+                    class="primary-btn full-width"
+                    type="submit">
+
+                    Create Account
+
+                </button>
+
+            </form>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         DASHBOARD
+    ====================================================== -->
+
+    <main
+        id="dashboardScreen"
+        class="dashboard hidden">
+
+
+        <!-- =================================================
+             TOP BAR
+        ================================================== -->
+
+        <header class="topbar">
+
+            <div class="brand compact">
+
+                <div class="brand-mark">
+                    K
+                </div>
+
+
+                <div>
+
+                    <h1>
+                        Kirana Ledger
+                    </h1>
+
+                    <p id="shopNameDisplay">
+                        Shop
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="topbar-actions">
+
+                <span
+                    id="ownerNameDisplay"
+                    class="owner-name">
+                </span>
+
+
+                <button
+                    id="logoutBtn"
+                    class="outline-btn"
+                    type="button">
+
+                    Sign Out
+
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- =================================================
+             DASHBOARD CONTENT
+        ================================================== -->
+
+        <section class="dashboard-content">
+
+
+            <!-- WELCOME -->
+
+            <div class="welcome">
+
+                <div>
+
+                    <p class="eyebrow">
+                        DASHBOARD
+                    </p>
+
+
+                    <h2 id="welcomeTitle">
+                        Welcome
+                    </h2>
+
+
+                    <p>
+                        Record transactions naturally
+                        and view your shop ledger.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 TWO MAIN OPTIONS
+            ================================================== -->
+
+            <div class="dashboard-grid">
+
+
+                <!-- RECORD -->
+
+                <button
+                    id="recordOptionBtn"
+                    class="feature-card"
+                    type="button">
+
+                    <span class="feature-icon">
+                        🎙️
+                    </span>
+
+
+                    <span>
+
+                        <strong>
+                            Record Transaction
+                        </strong>
+
+
+                        <small>
+                            Speak your transaction
+                            naturally. Gemini will extract
+                            the customer, amount and
+                            transaction type.
+                        </small>
+
+                    </span>
+
+
+                    <span class="arrow">
+                        →
+                    </span>
+
+                </button>
+
+
+                <!-- RECORDS -->
+
+                <button
+                    id="recordsOptionBtn"
+                    class="feature-card"
+                    type="button">
+
+                    <span class="feature-icon">
+                        📋
+                    </span>
+
+
+                    <span>
+
+                        <strong>
+                            View Records
+                        </strong>
+
+
+                        <small>
+                            View debt and credit records
+                            from your MySQL ledger.
+                        </small>
+
+                    </span>
+
+
+                    <span class="arrow">
+                        →
+                    </span>
+
+                </button>
+
+            </div>
+
+
+            <!-- =================================================
+                 RECORD VIEW
+            ================================================== -->
+
+            <section
+                id="recordView"
+                class="content-panel hidden">
+
+
+                <!-- PANEL HEADING -->
+
+                <div class="panel-heading">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            VOICE RECORDING
+                        </p>
+
+
+                        <h3>
+                            Record a transaction
+                        </h3>
+
+
+                        <p>
+                            Press the button and speak
+                            naturally. Gemini will analyze
+                            your recording.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        id="backFromRecordBtn"
+                        class="outline-btn"
+                        type="button">
+
+                        ← Dashboard
+
+                    </button>
+
+                </div>
+
+
+                <!-- =================================================
+                     RECORDER
+                ================================================== -->
+
+                <div class="recorder-box">
+
+
+                    <div
+                        id="recordStatus"
+                        class="record-status">
+
+                        Ready to record
+
+                    </div>
+
+
+                    <div
+                        id="recordTimer"
+                        class="record-timer">
+
+                        00:00
+
+                    </div>
+
+
+                    <button
+                        id="recordBtn"
+                        class="record-btn"
+                        type="button"
+                        aria-label="Start voice recording">
+
+                        <span class="record-dot"></span>
+
+
+                        <span id="recordBtnText">
+
+                            Start Recording
+
+                        </span>
+
+                    </button>
+
+
+                    <p
+                        id="microphoneMessage"
+                        class="muted center">
+
+                        Your browser will ask for
+                        microphone permission.
+
+                    </p>
+
+
+                    <!-- AUDIO PREVIEW -->
+
+                    <audio
+                        id="audioPreview"
+                        class="audio-preview hidden"
+                        controls>
+                    </audio>
+
+                </div>
+
+
+                <!-- =================================================
+                     GEMINI ANALYSIS RESULT
+                ================================================== -->
+
+                <div
+                    id="aiResultBox"
+                    class="developer-test hidden">
+
+
+                    <div>
+
+                        <p class="eyebrow">
+                            GEMINI ANALYSIS
+                        </p>
+
+
+                        <h3>
+                            Check the transaction
+                        </h3>
+
+
+                        <p>
+                            Gemini extracted the following
+                            information from your recording.
+                            Verify it before saving.
+                        </p>
+
+                    </div>
+
+
+                    <!-- ANALYSIS STATUS -->
+
+                    <div
+                        id="aiAnalysisStatus"
+                        class="record-status">
+
+                        Analysis complete
+
+                    </div>
+
+
+                    <!-- EXTRACTED INFORMATION -->
+
+                    <div class="transaction-form">
+
+
+                        <!-- CUSTOMER -->
+
+                        <div>
+
+                            <label for="aiCustomerName">
+
+                                Customer name
+
+                            </label>
+
+
+                            <input
+                                id="aiCustomerName"
+                                type="text"
+                                readonly
+                            >
+
+                        </div>
+
+
+                        <!-- AMOUNT -->
+
+                        <div>
+
+                            <label for="aiAmount">
+
+                                Amount
+
+                            </label>
+
+
+                            <input
+                                id="aiAmount"
+                                type="number"
+                                min="0.01"
+                                step="0.01"
+                                readonly
+                            >
+
+                        </div>
+
+
+                        <!-- TYPE -->
+
+                        <div>
+
+                            <label for="aiTransactionType">
+
+                                Transaction type
+
+                            </label>
+
+
+                            <select
+                                id="aiTransactionType">
+
+                                <option value="debt">
+
+                                    Debt / Udhaar
+
+                                </option>
+
+
+                                <option value="credit">
+
+                                    Credit / Paid
+
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- TRANSCRIPT -->
+
+                    <div>
+
+                        <label for="aiTranscript">
+
+                            What Gemini heard
+
+                        </label>
+
+
+                        <textarea
+                            id="aiTranscript"
+                            rows="4"
+                            readonly
+                            placeholder="Transcript will appear here.">
+                        </textarea>
+
+                    </div>
+
+
+                    <!-- CLARIFICATION -->
+
+                    <div
+                        id="aiClarification"
+                        class="empty-state hidden">
+
+                    </div>
+
+
+                    <!-- ACTION BUTTONS -->
+
+                    <div class="heading-actions">
+
+
+                        <button
+                            id="recordAgainBtn"
+                            class="outline-btn"
+                            type="button">
+
+                            ↻ Record Again
+
+                        </button>
+
+
+                        <button
+                            id="saveAiTransactionBtn"
+                            class="primary-btn"
+                            type="button">
+
+                            ✓ Confirm & Save
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     TEMPORARY MANUAL DATABASE TEST
+                ================================================== -->
+
+                <div class="developer-test">
+
+
+                    <div>
+
+                        <p class="eyebrow">
+                            TEMPORARY DATABASE TEST
+                        </p>
+
+
+                        <h3>
+                            Test MySQL transaction saving
+                        </h3>
+
+
+                        <p>
+                            This is only for testing the
+                            MySQL backend manually. Once the
+                            Gemini flow is working, you can
+                            remove this section.
+                        </p>
+
+                    </div>
+
+
+                    <form
+                        id="manualTransactionForm"
+                        class="transaction-form">
+
+
+                        <!-- CUSTOMER -->
+
+                        <div>
+
+                            <label for="testCustomer">
+
+                                Customer name
+
+                            </label>
+
+
+                            <input
+                                id="testCustomer"
+                                type="text"
+                                placeholder="Ramesh"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- AMOUNT -->
+
+                        <div>
+
+                            <label for="testAmount">
+
+                                Amount
+
+                            </label>
+
+
+                            <input
+                                id="testAmount"
+                                type="number"
+                                min="0.01"
+                                step="0.01"
+                                placeholder="500"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- TYPE -->
+
+                        <div>
+
+                            <label for="testType">
+
+                                Transaction type
+
+                            </label>
+
+
+                            <select
+                                id="testType"
+                                required>
+
+                                <option value="debt">
+
+                                    Debt / Udhaar
+
+                                </option>
+
+
+                                <option value="credit">
+
+                                    Credit / Paid
+
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <button
+                            class="primary-btn"
+                            type="submit">
+
+                            Save Test Transaction
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 RECORDS VIEW
+            ================================================== -->
+
+            <section
+                id="recordsView"
+                class="content-panel hidden">
+
+
+                <!-- PANEL HEADING -->
+
+                <div class="panel-heading">
+
+
+                    <div>
+
+                        <p class="eyebrow">
+                            LEDGER
+                        </p>
+
+
+                        <h3>
+                            Recorded information
+                        </h3>
+
+
+                        <p>
+                            Debt and credit transactions
+                            are displayed separately.
+                        </p>
+
+                    </div>
+
+
+                    <div class="heading-actions">
+
+
+                        <button
+                            id="refreshRecordsBtn"
+                            class="outline-btn"
+                            type="button">
+
+                            ↻ Refresh
+
+                        </button>
+
+
+                        <button
+                            id="backFromRecordsBtn"
+                            class="outline-btn"
+                            type="button">
+
+                            ← Dashboard
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     SUMMARY
+                ================================================== -->
+
+                <div class="summary-grid">
+
+
+                    <div class="summary-card">
+
+                        <span>
+                            Total Debt
+                        </span>
+
+
+                        <strong id="totalDebt">
+
+                            ₹0.00
+
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-card">
+
+                        <span>
+                            Total Credit
+                        </span>
+
+
+                        <strong id="totalCredit">
+
+                            ₹0.00
+
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-card">
+
+                        <span>
+                            Outstanding
+                        </span>
+
+
+                        <strong id="outstandingAmount">
+
+                            ₹0.00
+
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     LEDGER MESSAGE
+                ================================================== -->
+
+                <div
+                    id="ledgerMessage"
+                    class="empty-state hidden">
+                </div>
+
+
+                <!-- =================================================
+                     DEBT + CREDIT COLUMNS
+                ================================================== -->
+
+                <div class="ledger-grid">
+
+
+                    <!-- DEBT -->
+
+                    <article
+                        class="ledger-card debt-card">
+
+
+                        <div
+                            class="ledger-card-heading">
+
+
+                            <div>
+
+                                <span class="ledger-symbol">
+                                    ↗
+                                </span>
+
+
+                                <h4>
+                                    Debt / Udhaar
+                                </h4>
+
+                            </div>
+
+
+                            <span
+                                id="debtCount"
+                                class="count-badge">
+
+                                0
+
+                            </span>
+
+                        </div>
+
+
+                        <p class="ledger-description">
+
+                            Customers who took products
+                            without paying.
+
+                        </p>
+
+
+                        <div
+                            id="debtList"
+                            class="ledger-list">
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- CREDIT -->
+
+                    <article
+                        class="ledger-card credit-card">
+
+
+                        <div
+                            class="ledger-card-heading">
+
+
+                            <div>
+
+                                <span class="ledger-symbol">
+                                    ✓
+                                </span>
+
+
+                                <h4>
+                                    Credit / Paid
+                                </h4>
+
+                            </div>
+
+
+                            <span
+                                id="creditCount"
+                                class="count-badge">
+
+                                0
+
+                            </span>
+
+                        </div>
+
+
+                        <p class="ledger-description">
+
+                            Customers who paid for
+                            their purchases.
+
+                        </p>
+
+
+                        <div
+                            id="creditList"
+                            class="ledger-list">
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script src="/script.js"></script>
+
+</body>
+
+</html>
